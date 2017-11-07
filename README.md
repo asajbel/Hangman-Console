@@ -1,7 +1,7 @@
 # Hangman in Node
 >Bootcamp Homework. Hangman in a console using node.js.
 ## Install
-Requires node.js(https://nodejs.org/en/download/)
+Requires [node.js](https://nodejs.org/en/download/)
 ```
 npm install
 ```
