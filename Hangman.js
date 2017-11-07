@@ -1,47 +1,6 @@
 var randomWord = require("random-word");
 var inquirer = require("inquirer");
-
-function Word(word) {
-  this.correct = word;
-  this.word = [];
-  this.revealed = false;
-  for (i = 0; i < word.length; i++) {
-    this.word.push(new Letter(word[i]));
-  }
-
-  this.match = function(letter) {
-    var matched = false;
-    for (var i = 0; i < this.word.length; i++) {
-      if (letter[0].toLowerCase() === this.word[i].letter.toLowerCase()) {
-        this.word[i].hidden = false;
-        matched = true;
-      }
-    }
-    return matched;
-  };
-
-  this.print = function() {
-    var dashes = '';
-    var allRevealed = 0;
-    for (var i = 0; i < this.word.length; i++) {
-      if (this.word[i].hidden) {
-        dashes += "_ ";
-      } else {
-        dashes += this.word[i].letter + " ";
-        allRevealed++;
-      }
-    }
-    console.log("\n" + dashes + "\n");
-    if (allRevealed >= this.word.length) {
-      this.revealed = true;
-    }
-  };
-}
-
-function Letter(letter) {
-  this.letter = letter;
-  this.hidden = true;
-}
+var Word = require("./word.js").Word;
 
 function play() {
   var random = new Word(randomWord());
@@ -53,7 +12,14 @@ function play() {
     var askGuess = [{
       name: "guess",
       message: "Guess a letter!",
-      type: "text"
+      type: "text",
+      validate: function (value) {
+      	if (typeof value === "string" && value.length === 1 && /^[a-zA-Z]/.test(value)){
+      		return true;
+      	} else {
+      		return "Enter a letter";
+      	}
+      }
     }];
 
     inquirer.prompt(askGuess).then(function(response) {
@@ -78,7 +44,7 @@ function play() {
         restart();
       }
 
-    });
+    }).error;
 
   }
   guess();
