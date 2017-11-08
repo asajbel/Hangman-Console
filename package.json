@@ -1,0 +1,23 @@
+{
+  "name": "hangman",
+  "version": "1.0.0",
+  "description": "Hangman",
+  "main": "Hangman.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asajbel/Hangman-Console.git"
+  },
+  "author": "asajbel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asajbel/Hangman-Console/issues"
+  },
+  "homepage": "https://github.com/asajbel/Hangman-Console#readme",
+  "dependencies": {
+    "inquirer": "^3.3.0",
+    "random-word": "^2.0.0"
+  }
+}
